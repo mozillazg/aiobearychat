@@ -23,11 +23,12 @@ def get_meta():
 
 
 requirements = [
-    # TODO: put package requirements here
+    'attrs',
 ]
 
 extras_require = {
     '': requirements,
+    'aiohttp': 'aiohttp',
 }
 
 meta_d = get_meta()

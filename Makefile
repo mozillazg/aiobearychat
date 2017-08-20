@@ -11,6 +11,11 @@ endef
 export BROWSER_PYSCRIPT
 BROWSER := python -c "$$BROWSER_PYSCRIPT"
 
+OPENAPI_SPEC_JSON := "scripts/swagger.json"
+OPENAPI_DIR := "aiobearychat/openapi/"
+OPENAPI_DOC_DIR := "docs/api/"
+PYPANDOC_PANDOC := "$(shell which pandoc)"
+
 help:
 	@echo "clean - remove all build, test, coverage and Python artifacts"
 	@echo "clean-build - remove build artifacts"
@@ -22,8 +27,11 @@ help:
 	@echo "coverage - check code coverage quickly with the default Python"
 	@echo "docs - generate Sphinx HTML documentation, including API docs"
 	@echo "release - package and upload a release"
+	@echo "release-test - package and upload a release to test pypi server"
 	@echo "dist - package"
 	@echo "install - install the package to the active Python's site-packages"
+	@echo "gen_openapi - generate open api code"
+	@echo "down_openapi_spec - download open api sepc json file"
 
 clean: clean-build clean-pyc clean-test
 
@@ -65,11 +73,15 @@ docs:
 	sphinx-apidoc -o docs/ aiobearychat
 	$(MAKE) -C docs clean
 	$(MAKE) -C docs html
-	$(BROWSER) docs/_build/html/index.html
+	# $(BROWSER) docs/_build/html/index.html
 
 release: clean
 	python setup.py sdist upload
 	python setup.py bdist_wheel upload
+
+release-test: clean
+	python setup.py sdist upload -r test
+	python setup.py bdist_wheel upload -r test
 
 dist: clean
 	python setup.py sdist
@@ -79,3 +91,12 @@ dist: clean
 install: clean
 	pip install -r requirements_dev.txt
 	python setup.py install
+
+down_openapi_spec:
+	-rm $(OPENAPI_SPEC_JSON)
+	curl https://raw.githubusercontent.com/bearyinnovative/OpenAPI/master/api/swagger.json \
+		 -o $(OPENAPI_SPEC_JSON)
+
+gen_openapi: down_openapi_spec
+	PYPANDOC_PANDOC=$(PYPANDOC_PANDOC) \
+	python scripts/gen_openapi.py $(OPENAPI_SPEC_JSON) $(OPENAPI_DIR) $(OPENAPI_DOC_DIR)

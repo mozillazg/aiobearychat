@@ -9,7 +9,7 @@ Tests for `aiobearychat` module.
 
 import pytest
 
-from aiobearychat import aiobearychat
+from aiobearychat import openapi  # noqa
 
 
 @pytest.yield_fixture

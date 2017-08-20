@@ -24,7 +24,7 @@ aiobearychat
 
 
 
-An async bearychat API library for Python
+An async `BearyChat <https://bearychat.com/>`_ API library for Python
 
 * Free software: MIT license
 * Documentation: https://aiobearychat.readthedocs.org
@@ -35,22 +35,42 @@ An async bearychat API library for Python
 Features
 --------
 
-* TODO
+* 异步 I/O `BearyChat <https://bearychat.com/>`_ Python SDK
+* 支持不同的异步 I/O http 客户端模块（aiohttp, tornado, ...)
+* 封装所有 OpenAPI
+
 
 Installation
---------------
+------------
 
 At the command line::
 
-    $ pip install aiobearychat
+    $ pip install aiobearychat[aiohttp]
+
 
 Usage
---------
+-----
 
-* TODO
+
+OpenAPI
+~~~~~~~
+
+.. code-block:: python
+
+    import aiohttp
+
+    from aiobearychat.openapi.aiohttp import OpenAPI
+
+
+    async def main(token):
+        async with aiohttp.ClientSession() as session:
+            api = OpenAPI(session, token=token)
+            response = await api.user.list()
+            print(response.json())
+
 
 Credits
----------
+-------
 
 This package was created with Cookiecutter_ and the `mozillazg/cookiecutter-pypackage`_ project template.
 

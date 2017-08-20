@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 Welcome to aiobearychat's documentation!
-======================================
+=========================================
 
 Contents:
 
@@ -14,9 +14,12 @@ Contents:
    readme
    installation
    usage
+   openapi
    contributing
    authors
-   history
+   changelog
+   api/index
+
 
 Indices and tables
 ==================
@@ -24,4 +27,3 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
-

@@ -1,0 +1,28 @@
+OpenAPI
+=======
+
+.. currentmodule:: aiobearychat.openapi
+
+.. automodule:: aiobearychat.openapi
+
+    .. contents::
+        :local:
+
+    OpenAPI
+    -------
+
+    .. autoclass:: OpenAPI
+
+        :members:
+        :undoc-members:
+
+        .. attribute:: base_url
+
+            开放 API 的基地址。 默认是 ``{{ base_url }}``
+
+
+        {%- for module in api_modules %}
+        .. attribute:: {{ module['kind'] }}
+
+            {{ module['kind_doc'] }} (是个 :class:`aiobearychat.openapi.{{ module['module_name'] }}.{{ module['cls_name'] }}` 实例).
+        {%- endfor %}
