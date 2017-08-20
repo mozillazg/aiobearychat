@@ -8,7 +8,7 @@
     - id: requirements-txt-fixer
     - id: trailing-whitespace
     - id: flake8
-      exclude: "((scripts/.*)|(aiobearychat/openapi/.*_api.py$))"
+      exclude: "((scripts/.*)|(aiobearychat/openapi/.*_api.py$)|(docs/conf.py))"
     - id: fix-encoding-pragma
     - id: debug-statements
     - id: trailing-whitespace

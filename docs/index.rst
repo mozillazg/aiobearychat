@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 Welcome to aiobearychat's documentation!
-=========================================
+========================================
 
 Contents:
 
@@ -13,7 +13,6 @@ Contents:
 
    readme
    installation
-   usage
    openapi
    contributing
    authors
