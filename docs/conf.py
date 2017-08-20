@@ -273,15 +273,3 @@ texinfo_documents = [
 
 # If true, do not generate a @detailmenu in the "Top" node's menu.
 #texinfo_no_detailmenu = False
-
-
-def run_apidoc(_):
-    from sphinx.apidoc import main
-    import os
-    current_dir = os.path.join(project_root, 'docs')
-    module = os.path.join(project_root,'aiobearychat')
-    main(['-e', '-o', current_dir, module, '--force'])
-
-
-def setup(app):
-    app.connect('builder-inited', run_apidoc)
