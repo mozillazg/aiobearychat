@@ -1,8 +1,8 @@
 # Config file for automatic testing at travis-ci.org
-
+dist: trusty
 language: python
 python: 3.5
-
+cache: pip
 env:
   - TOX_ENV=py35
 
