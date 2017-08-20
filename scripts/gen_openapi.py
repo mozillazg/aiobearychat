@@ -331,5 +331,5 @@ print('generate {0}'.format(file_name))
 with io.open(file_name, 'w', encoding='utf-8') as fp:
     doc = template_doc.render(
         api_modules=api_modules, now=now, base_url=base_url
-    ).strip()
+    )
     fp.write(doc)
