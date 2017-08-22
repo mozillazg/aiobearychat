@@ -12,21 +12,24 @@ class OpenAPI:
     """开放 API (OpenAPI) 服务
 
     :param requester: 实际进行请求操作 requester
+    :type requester: Requester
     :param token: RTM token, 目前可以通过创建 hubot 机器人获得
+    :type token: str
     :param base_url: 开放 API 的基地址
+    :type base_url: str
     """
 
     #: 开放 API 的基地址
-    base_url: str = '{{ base_url }}'
+    base_url = '{{ base_url }}'  # type: str
 
     def __init__(self, requester: Requester, token: str = attr.NOTHING, *,
                  base_url: str = ''):
         #: 开放 API 的基地址
-        self.base_url = base_url or self.base_url
-        self._token = token
+        self.base_url = base_url or self.base_url  # type: str
+        self._token = token    # type: str
         {%- for module in api_modules %}
         #: {{ module['kind_doc'] }}
         self.{{ module['kind'] }} = {{ module['cls_name'] }}(
             requester, token=token, base_url=self.base_url
-        )
+        )  # type: {{ module['cls_name'] }}
         {%- endfor %}
