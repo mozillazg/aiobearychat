@@ -21,14 +21,6 @@ aiobearychat\.abc module
     :undoc-members:
     :show-inheritance:
 
-aiobearychat\.core module
--------------------------
-
-.. automodule:: aiobearychat.core
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
 aiobearychat\.sansio module
 ---------------------------
 
