@@ -32,9 +32,10 @@ An async `BearyChat <https://bearychat.com/>`_ API library for Python
 Features
 --------
 
-* 异步 I/O `BearyChat <https://bearychat.com/>`_ Python SDK
-* 支持不同的异步 I/O http 客户端模块（aiohttp, tornado, ...)
-* 封装所有 OpenAPI
+* `BearyChat <https://bearychat.com/>`_ 异步 I/O Python SDK
+* 支持不同的异步 I/O HTTP 请求模块（aiohttp, tornado, ...)
+* 封装所有的 OpenAPI
+* 封装所有的 RTM HTTP API
 
 
 Installation
@@ -64,6 +65,23 @@ OpenAPI
             api = OpenAPI(session, token=token)
             response = await api.user.list()
             print(response.json())
+
+
+RTM HTTP API
+~~~~~~~~~~~~
+
+.. code-block:: python
+
+    import aiohttp
+
+    from aiobearychat.rtm.aiohttp import RtmAPI
+
+
+    async def main(token):
+        async with aiohttp.ClientSession() as session:
+            api = RtmAPI(session, token=token)
+            response = await api.start()
+            pprint(response.json())
 
 
 Credits

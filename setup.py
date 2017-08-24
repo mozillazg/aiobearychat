@@ -50,11 +50,6 @@ setup(
     extras_require=extras_require,
     license='MIT',
     zip_safe=False,
-    # entry_points={
-    #     'console_scripts': [
-    #         'aiobearychat = aiobearychat.__main__:main',
-    #     ],
-    # },
     keywords='aiobearychat',
     classifiers=[
         'Development Status :: 5 - Production/Stable',
