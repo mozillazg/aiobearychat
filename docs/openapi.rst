@@ -20,10 +20,18 @@
 
 
 
-上面的 ``OpenAPI`` 是 :class:`aiobearychat.openapi.OpenAPI` 的子类，表示使用
+上面的 :class:`aiobearychat.openapi.aiohttp.OpenAPI` 是 :class:`aiobearychat.openapi.OpenAPI` 的子类，表示使用
 ``aiohttp`` 这个模块来进行 http 请求相关的操作。
 
 具体 api 可以查看
 :class:`aiobearychat.openapi.OpenAPI` 的文档，同时也可以参考
 `官方文档 <https://github.com/bearyinnovative/OpenAPI/tree/master/api>`__ 来理解
 每个方法的含义。
+
+
+可用的快捷封装
+--------------
+
+使用 aiohttp 进行 http 请求相关的操作:
+
+* :class:`aiobearychat.openapi.aiohttp.OpenAPI`

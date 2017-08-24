@@ -14,6 +14,9 @@ class Response:
     headers = attr.ib()  # type: Dict
     body = attr.ib()  # type: bytes
 
+    def __init__(self, status: int, headers: Dict, body: bytes):
+        super().__init__(status=status, headers=headers, body=body)
+
     def json(self) -> Any:
         """反序列化 ``body`` 的值"""
         return json.loads(self.body)
@@ -26,9 +29,9 @@ def format_url(url: str, url_params: Optional[Dict] = None) -> str:
 
 
 def clean_nothing_keys(origin_dict: Dict) -> Dict:
-    """移除值为 NOTHING 的 key"""
+    """移除 value 为 NOTHING 的 key"""
     return {
-        k: v
-        for k, v in origin_dict.items()
-        if k is not attr.NOTHING
+        key: value
+        for key, value in origin_dict.items()
+        if value is not attr.NOTHING
     }

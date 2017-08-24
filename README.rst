@@ -21,7 +21,7 @@ aiobearychat
 
 
 
-An async `BearyChat <https://bearychat.com/>`_ API library for Python
+An async `BearyChat <https://bearychat.com/>`_ Python SDK
 
 * Free software: MIT license
 * Documentation: https://aiobearychat.readthedocs.org
@@ -32,10 +32,9 @@ An async `BearyChat <https://bearychat.com/>`_ API library for Python
 Features
 --------
 
-* `BearyChat <https://bearychat.com/>`_ 异步 I/O Python SDK
-* 支持不同的异步 I/O HTTP 请求模块（aiohttp, tornado, ...)
 * 封装所有的 OpenAPI
 * 封装所有的 RTM HTTP API
+* 支持不同的异步 HTTP 请求模块（aiohttp, tornado, ...)
 
 
 Installation

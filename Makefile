@@ -70,7 +70,7 @@ coverage: test
 docs:
 	rm -f docs/aiobearychat.rst
 	rm -f docs/modules.rst
-	sphinx-apidoc -o docs/ aiobearychat
+	# sphinx-apidoc -o docs/ aiobearychat
 	$(MAKE) -C docs clean
 	$(MAKE) -C docs html
 	# $(BROWSER) docs/_build/html/index.html

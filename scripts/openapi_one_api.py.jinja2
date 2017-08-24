@@ -35,7 +35,7 @@ class {{ cls_name }}(API):
         :param {{ param.name }}: {{ param.description }}
         {%- if param.default != 'NOTHING' -%}默认值: ``{{ param.default }}`` {%- endif -%}
         {%- if param.example %} (示例: ``{{ param.example }}``){% endif %}
-        :type {{ param.name }}: {{ param.type.__name__ }}
+        :type {{ param.name }}: :class:`{{ param.type.__name__ }}`
         {% endfor %}
 
         :return: response. 一个 :class:`aiobearychat.sansio.Response` 实例
@@ -54,13 +54,13 @@ class {{ cls_name }}(API):
         url_params = {}
         body_params = {}
 
-        {%- if api.authentication and api.http_method in ['get', 'head', 'delete'] %}
+        {%- if api.authentication and api.http_method in nobody_methods %}
         url_params['token'] = self._token
-        {% else %}
+        {% elif api.authentication %}
         body_params['token'] = self._token
         {%- endif %}
 
-        {%- if api.http_method in ['get', 'head', 'delete'] %}
+        {%- if api.http_method in nobody_methods %}
         url_params.update({
            {%- for param in api.params %}
            '{{ param.name }}': {{ param.name }},
@@ -80,6 +80,9 @@ class {{ cls_name }}(API):
 
         url_params = clean_nothing_keys(url_params)
         body_params = clean_nothing_keys(body_params)
+        {% if api.http_method in nobody_methods %}
+        body_params = None
+        {% endif %}
 
         return await self._make_request('{{ api.http_method }}',
                                         url,

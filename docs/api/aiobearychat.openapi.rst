@@ -1,17 +1,16 @@
-OpenAPI
-=======
+====================================================================
+ ``aiobearychat.openapi``
+====================================================================
+
+.. contents::
+    :local:
 
 .. currentmodule:: aiobearychat.openapi
 
 .. automodule:: aiobearychat.openapi
 
-    .. contents::
-        :local:
 
-    OpenAPI
-    -------
-
-    .. autoclass:: OpenAPI
+    .. autoclass:: aiobearychat.openapi.OpenAPI
 
         :members:
         :undoc-members:

@@ -268,7 +268,7 @@ template_env.globals.update({
 
 template_one_api = template_env.get_template('openapi_one_api.py.jinja2')
 template_merge_apis = template_env.get_template('openapi_merge_apis.py.jinja2')
-template_doc = template_env.get_template('openapi.rst.jinja2')
+template_openapi_doc = template_env.get_template('aiobearychat.openapi.rst.jinja2')
 os.environ.setdefault('PYPANDOC_PANDOC', '/usr/local/bin/pandoc')
 
 api_group = defaultdict(list)
@@ -295,6 +295,7 @@ kind_docs = {
     'rtm': 'RTM 相关 API',
 }
 base_url = 'https://api.bearychat.com/v1'
+nobody_methods = ['get', 'head', 'delete', 'options']
 
 
 for kind, api_list in api_group.items():
@@ -308,9 +309,11 @@ for kind, api_list in api_group.items():
                         'module_name': module_name})
     print('generate {0}'.format(file_name))
     with io.open(file_name, 'w', encoding='utf-8') as fp:
-        code = template_one_api.render(cls_name=cls_name, api_list=api_list,
-                                       now=now, base_url=base_url,
-                                       cls_doc=kind_doc).strip()
+        code = template_one_api.render(
+            cls_name=cls_name, api_list=api_list,
+            now=now, base_url=base_url,
+            cls_doc=kind_doc, nobody_methods=nobody_methods
+        ).strip()
         formatted_code = format_code(code)
         fp.write(formatted_code)
 
@@ -321,15 +324,29 @@ file_name = os.path.join(api_dir, 'core.py')
 print('generate {0}'.format(file_name))
 with io.open(file_name, 'w', encoding='utf-8') as fp:
     code = template_merge_apis.render(
-        api_modules=api_modules, now=now, base_url=base_url
+        api_modules=api_modules, now=now, base_url=base_url,
+        nobody_methods=nobody_methods
     ).strip()
     formatted_code = format_code(code)
     fp.write(formatted_code)
 
-file_name = os.path.join(doc_dir, 'openapi.rst')
+file_name = os.path.join(doc_dir, 'aiobearychat.openapi.rst')
 print('generate {0}'.format(file_name))
 with io.open(file_name, 'w', encoding='utf-8') as fp:
-    doc = template_doc.render(
+    doc = template_openapi_doc.render(
         api_modules=api_modules, now=now, base_url=base_url
     )
     fp.write(doc)
+
+
+for module in api_modules:
+    tpl = template_env.get_template('aiobearychat.openapi.x.rst.jinja2')
+    file_name = os.path.join(doc_dir, 'aiobearychat.openapi.{0}.rst'.format(
+        module['module_name']
+    ))
+    print('generate {0}'.format(file_name))
+    with io.open(file_name, 'w', encoding='utf-8') as fp:
+        doc = tpl.render(
+            module=module
+        )
+        fp.write(doc)

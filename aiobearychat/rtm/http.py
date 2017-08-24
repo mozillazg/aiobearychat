@@ -106,7 +106,7 @@ class RtmAPI(API):
                                     }
                                 ]
 
-        .. :type attachments: list
+        :type attachments: :class:`list`
 
         :return: response. 一个 :class:`aiobearychat.sansio.Response` 实例
         :rtype: :class:`aiobearychat.sansio.Response`

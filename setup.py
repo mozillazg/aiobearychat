@@ -35,7 +35,7 @@ meta_d = get_meta()
 setup(
     name='aiobearychat',
     version=meta_d['__version__'],
-    description='An async bearychat API library for Python',
+    description='An async BearyChat Python SDK',
     long_description=readme,
     author='mozillazg',
     author_email='mozillazg101@gmail.com',
