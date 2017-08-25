@@ -21,7 +21,7 @@ aiobearychat
 
 
 
-An async `BearyChat <https://bearychat.com/>`_ Python SDK
+`BearyChat <https://bearychat.com/>`_ 异步 Python SDK
 
 * Free software: MIT license
 * Documentation: https://aiobearychat.readthedocs.org
