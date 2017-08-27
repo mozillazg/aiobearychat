@@ -5,6 +5,7 @@
     - id: debug-statements
     - id: double-quote-string-fixer
     - id: end-of-file-fixer
+      exclude: "((^setup.cfg$))"
     - id: requirements-txt-fixer
     - id: trailing-whitespace
     - id: flake8
