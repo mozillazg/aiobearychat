@@ -1,0 +1,13 @@
+[run]
+omit =
+    aiobearychat/openapi/*_api.py
+    aiobearychat/rtm/*_api.py
+
+[report]
+exclude_lines =
+    pragma: no cover
+    except NameError
+    except ImportError
+    pass
+    def main
+    if __name__ == .__main__.:

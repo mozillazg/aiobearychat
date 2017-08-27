@@ -8,9 +8,6 @@ from aiobearychat.sansio import Response, format_url
 
 class Requester(_abc.ABC):
 
-    def __init__(self, *args, **kwargs):
-        pass
-
     @_abc.abstractmethod
     async def request(self, method: str, url: str,
                       body: bytes = b'', headers: Optional[Dict] = None,
